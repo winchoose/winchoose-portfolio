@@ -1,0 +1,63 @@
+/* 공통 초기화와 기본 설정 */
+:root{
+  font-family: 'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif;
+  color: #191f28;
+  background: #fff;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  --blue: #2470e8;
+  --ink: #191f28;
+  --muted: #626b79;
+  --header-height: 80px;
+  --page-gutter: 112px;
+}
+@media (max-width:900px){
+  :root{
+    --page-gutter: 64px;
+  }
+}
+@media (max-width:600px){
+  :root{
+    --header-height: 72px;
+    --page-gutter: 48px;
+  }
+}
+*,*::before,*::after{
+  box-sizing: border-box;
+}
+html{
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-height);
+}
+body{
+  min-width: 320px;
+  margin: 0;
+}
+a{
+  color: inherit;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+a:focus-visible{
+  outline: 2px solid currentColor;
+  outline-offset: 6px;
+  border-radius: 3px;
+}
+h1,h2,p{
+  margin: 0;
+}
+::selection{
+  color: #fff;
+  background: #1552b9;
+}
+@media (prefers-reduced-motion:reduce){
+  html{
+    scroll-behavior: auto;
+  }
+  *,*::before,*::after{
+    animation: none!important;
+    transition: none!important;
+  }
+}
