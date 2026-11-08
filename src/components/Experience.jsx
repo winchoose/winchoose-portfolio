@@ -4,7 +4,7 @@ const experiences = [
   {
     name: "SOPT 38기",
     description: "대학생 연합 IT 벤처 창업 동아리 SOPT 38기 웹파트를 수료했습니다.",
-    activities: ["SOPT 해커톤 SOPKATHON"],
+    activities: ["38기 앱잼 APPJAM", "SOPT 해커톤 SOPKATHON"],
   },
   {
     name: "구름톤 유니브 4기",
