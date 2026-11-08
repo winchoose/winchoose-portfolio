@@ -1,6 +1,7 @@
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import About from "./components/About";
+import Experience from "./components/Experience";
 import ProjectCard from "./components/ProjectCard";
 import { projectList } from "./projectList";
 import "./App.css";
@@ -35,22 +36,7 @@ function App() {
               ))}
             </div>
           </section>
-          <section
-            className="content-section"
-            id="experience"
-            aria-labelledby="experience-title"
-          >
-            <div className="section-label">
-              <span>03</span>EXPERIENCE
-            </div>
-            <div className="section-content">
-              <h2 id="experience-title">
-                경험<span aria-hidden="true">.</span>
-              </h2>
-              <p>활동과 협업에서 맡은 역할, 배운 점을 소개할 공간이에요.</p>
-            </div>
-            <span className="section-status">준비 중</span>
-          </section>
+          <Experience />
         </div>
       </main>
       <footer>

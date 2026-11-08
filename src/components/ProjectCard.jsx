@@ -79,6 +79,13 @@ const Card = styled.article`
       margin-top: 24px;
     }
 
+    .contribution-heading {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px 16px;
+    }
+
     h4 {
       margin: 0;
       font-size: 15px;
@@ -119,6 +126,59 @@ const Card = styled.article`
     }
   }
 
+  .project-metrics {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px;
+    margin: 18px 0 0;
+    padding: 24px;
+    border-radius: 10px;
+    background: #f7f9fc;
+
+    > div {
+      min-width: 0;
+    }
+
+    dt {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+      word-break: keep-all;
+    }
+
+    dd {
+      margin: 8px 0 0;
+      color: var(--blue);
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: -1px;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    span {
+      margin-left: 4px;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0;
+    }
+
+    @media (max-width: 700px) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px 16px;
+      padding: 16px;
+
+      dd {
+        font-size: 26px;
+      }
+
+      span {
+        font-size: 13px;
+      }
+    }
+  }
+
   .project-links {
     display: flex;
     flex-wrap: wrap;
@@ -133,6 +193,8 @@ const Card = styled.article`
     align-items: center;
     gap: 12px;
     min-height: 32px;
+    min-width: 0;
+    max-width: 100%;
     font-size: 13px;
     font-weight: 600;
 
@@ -141,6 +203,34 @@ const Card = styled.article`
       text-decoration: underline;
       text-underline-offset: 4px;
     }
+  }
+
+  .contribution-link {
+    min-height: 24px;
+    gap: 8px;
+    font-size: 12px;
+  }
+
+  .link-icon {
+    flex: 0 0 20px;
+  }
+
+  .link-icon--youtube {
+    color: #ff0033;
+  }
+
+  .link-icon--tistory {
+    width: 14px;
+    height: 14px;
+    flex-basis: 14px;
+    color: #ff5544;
+  }
+
+  .link-label {
+    min-width: 0;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+    line-height: 1.6;
   }
 
   @media (max-width: 700px) {
@@ -179,11 +269,14 @@ function ProjectCard({
   repositoryUrl = "",
   siteUrl = "",
   presentationUrl = "",
+  presentationTitle = "발표 영상",
   blogUrl = "",
+  blogTitle = "기술 블로그",
   period = "",
   role = "",
   contributionTitle = "담당한 일",
   contributions = [],
+  pullRequests = [],
 }) {
   return (
     <Card>
@@ -196,15 +289,36 @@ function ProjectCard({
             {description && <p>{description}</p>}
           </div>
         </div>
-        <section className="project-contributions" aria-label={`${name}에서 담당한 일`}>
+        <section className="project-contributions" aria-label={`${name} 프로젝트 경험`}>
           {role && <p className="project-role">{role}</p>}
           {contributions.length > 0 ? (
-            contributions.map(({ title, items }) => (
+            contributions.map(({ title, items = [], text, metrics = [], blogUrl }) => (
               <div className="contribution-group" key={title}>
-                <h4>{title}</h4>
-                <ul>
-                  {items.map((item) => <li key={item}>{item}</li>)}
-                </ul>
+                <div className="contribution-heading">
+                  <h4>{title}</h4>
+                  {blogUrl && (
+                    <a className="contribution-link" href={blogUrl} target="_blank" rel="noopener noreferrer" aria-label={`${name} ${title} 기술블로그 (새 탭에서 열림)`}>
+                      <svg className="link-icon link-icon--tistory" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/icons/brands.svg#tistory" /></svg>
+                      <span className="link-label">기술블로그</span> <span aria-hidden="true">↗</span>
+                    </a>
+                  )}
+                </div>
+                {text && <p>{text}</p>}
+                {metrics.length > 0 && (
+                  <dl className="project-metrics">
+                    {metrics.map(({ label, value, unit }) => (
+                      <div key={label}>
+                        <dt>{label}</dt>
+                        <dd>{value}{unit && <span>{unit}</span>}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                )}
+                {items.length > 0 && (
+                  <ul>
+                    {items.map((item) => <li key={item}>{item}</li>)}
+                  </ul>
+                )}
               </div>
             ))
           ) : (
@@ -219,11 +333,18 @@ function ProjectCard({
             {technologies.map((technology) => <li key={technology}>{technology}</li>)}
           </ul>
         )}
-        {(repositoryUrl || siteUrl || presentationUrl || blogUrl) && (
+        {(repositoryUrl || siteUrl || presentationUrl || blogUrl || pullRequests.length > 0) && (
           <div className="project-links">
+            {pullRequests.map(({ label, url }) => (
+              <a key={url} href={url} target="_blank" rel="noopener noreferrer" aria-label={`${name} ${label} (새 탭에서 열림)`}>
+                <svg className="link-icon link-icon--github" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/icons/brands.svg#github" /></svg>
+                <span className="link-label">{label}</span> <span aria-hidden="true">↗</span>
+              </a>
+            ))}
             {repositoryUrl && (
               <a href={repositoryUrl} target="_blank" rel="noopener noreferrer" aria-label={`${name} GitHub (새 탭에서 열림)`}>
-                GitHub <span aria-hidden="true">↗</span>
+                <svg className="link-icon link-icon--github" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/icons/brands.svg#github" /></svg>
+                <span className="link-label">GitHub</span> <span aria-hidden="true">↗</span>
               </a>
             )}
             {siteUrl && (
@@ -232,13 +353,15 @@ function ProjectCard({
               </a>
             )}
             {presentationUrl && (
-              <a href={presentationUrl} target="_blank" rel="noopener noreferrer" aria-label={`${name} 발표 영상 (새 탭에서 열림)`}>
-                발표 영상 <span aria-hidden="true">↗</span>
+              <a href={presentationUrl} target="_blank" rel="noopener noreferrer" aria-label={`${name} 발표영상: ${presentationTitle} (새 탭에서 열림)`}>
+                <svg className="link-icon link-icon--youtube" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/icons/brands.svg#youtube" /></svg>
+                <span className="link-label">발표영상: {presentationTitle}</span> <span aria-hidden="true">↗</span>
               </a>
             )}
             {blogUrl && (
-              <a href={blogUrl} target="_blank" rel="noopener noreferrer" aria-label={`${name} 기술 블로그 (새 탭에서 열림)`}>
-                기술 블로그 <span aria-hidden="true">↗</span>
+              <a href={blogUrl} target="_blank" rel="noopener noreferrer" aria-label={`${name} 기술블로그: ${blogTitle} (새 탭에서 열림)`}>
+                <svg className="link-icon link-icon--tistory" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/icons/brands.svg#tistory" /></svg>
+                <span className="link-label">기술블로그: {blogTitle}</span> <span aria-hidden="true">↗</span>
               </a>
             )}
           </div>

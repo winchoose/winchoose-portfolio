@@ -111,7 +111,7 @@ const Main = styled.section`
     a {
       display: inline-flex;
       align-items: center;
-      gap: 20px;
+      gap: 10px;
       padding: 12px 18px;
       border: 1px solid #dfe4eb;
       border-radius: 6px;
@@ -125,6 +125,17 @@ const Main = styled.section`
       color: var(--blue);
       border-color: var(--blue);
       background: #f5f8ff;
+    }
+
+    .link-icon {
+      flex: 0 0 20px;
+    }
+
+    .link-icon--tistory {
+      width: 14px;
+      height: 14px;
+      flex-basis: 14px;
+      color: #ff5544;
     }
 
     span {
@@ -210,9 +221,11 @@ function About() {
           </div>
           <div className="about-links">
             <a href="https://github.com/winchoose" target="_blank" rel="noopener noreferrer" aria-label="GitHub (새 탭에서 열림)">
+              <svg className="link-icon link-icon--github" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/icons/brands.svg#github" /></svg>
               GitHub <span aria-hidden="true">↗</span>
             </a>
             <a href="https://taek2-0310.tistory.com/" target="_blank" rel="noopener noreferrer" aria-label="Blog (새 탭에서 열림)">
+              <svg className="link-icon link-icon--tistory" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/icons/brands.svg#tistory" /></svg>
               Blog <span aria-hidden="true">↗</span>
             </a>
           </div>
