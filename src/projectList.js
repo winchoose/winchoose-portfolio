@@ -62,38 +62,6 @@ export const projectList = [
     blogUrl: "https://taek2-0310.tistory.com/14",
   },
   {
-    id: "open-source",
-    name: "오픈소스 기여",
-    period: "",
-    role: "",
-    contributions: [
-      {
-        title: "HWP 렌더링 엔진 rhwp 오픈소스 버그 분석 및 기여",
-        items: [
-          "HOP에서 HWP 양식 문서가 손상된 것처럼 보이는 문제를 발견했습니다. 원본 파일과 공유 후 파일의 크기·SHA-256 해시를 비교해 실제 파일 손상이 아니라 렌더링 문제임을 분리했습니다.",
-          "upstream rhwp 데모에서도 동일한 레이아웃 깨짐이 재현되는 것을 확인해 문제 범위를 HOP 통합 문제가 아닌 rhwp 렌더러의 표/문단 배치 문제로 좁혔습니다.",
-          "rhwp 렌더러에서 연속된 TAC 표 사이의 line segment 간격이 음수로 되감기는 케이스를 추적하고 gap 계산이 0 이상으로 보정되도록 수정했습니다.",
-          "수정안·재현 문서·회귀 테스트가 메인터너의 줄 위치 계산 보정과 함께 통합 PR #7110으로 devel에 병합됐으며 원 커밋의 저자와 출처가 보존됐습니다.",
-        ],
-      },
-    ],
-    description: "",
-    image: "",
-    technologies: [],
-    repositoryUrl: "",
-    siteUrl: "",
-    pullRequests: [
-      {
-        label: "기여 PR #7103",
-        url: "https://github.com/edwardkim/rhwp/pull/7103",
-      },
-      {
-        label: "통합·병합 PR #7110",
-        url: "https://github.com/edwardkim/rhwp/pull/7110",
-      },
-    ],
-  },
-  {
     id: "passtival",
     name: "Passtival",
     period: "",
@@ -145,5 +113,37 @@ export const projectList = [
     ],
     repositoryUrl: "https://github.com/Passtival/passtival-client",
     siteUrl: "",
+  },
+  {
+    id: "open-source",
+    name: "오픈소스 기여",
+    period: "",
+    role: "",
+    contributions: [
+      {
+        title: "HWP 렌더링 엔진 rhwp 오픈소스 버그 분석 및 기여",
+        items: [
+          "HOP에서 HWP 양식 문서가 손상된 것처럼 보이는 문제를 발견했습니다. 원본 파일과 공유 후 파일의 크기·SHA-256 해시를 비교해 실제 파일 손상이 아니라 렌더링 문제임을 분리했습니다.",
+          "upstream rhwp 데모에서도 동일한 레이아웃 깨짐이 재현되는 것을 확인해 문제 범위를 HOP 통합 문제가 아닌 rhwp 렌더러의 표/문단 배치 문제로 좁혔습니다.",
+          "rhwp 렌더러에서 연속된 TAC 표 사이의 line segment 간격이 음수로 되감기는 케이스를 추적하고 gap 계산이 0 이상으로 보정되도록 수정했습니다.",
+          "수정안·재현 문서·회귀 테스트가 메인터너의 줄 위치 계산 보정과 함께 통합 PR #7110으로 devel에 병합됐으며 원 커밋의 저자와 출처가 보존됐습니다.",
+        ],
+      },
+    ],
+    description: "",
+    image: "",
+    technologies: [],
+    repositoryUrl: "",
+    siteUrl: "",
+    pullRequests: [
+      {
+        label: "기여 PR #7103",
+        url: "https://github.com/edwardkim/rhwp/pull/7103",
+      },
+      {
+        label: "통합·병합 PR #7110",
+        url: "https://github.com/edwardkim/rhwp/pull/7110",
+      },
+    ],
   },
 ];
